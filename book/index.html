@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Douban 图书api</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            /* overflow-x: hidden; */
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .container {
+            height: 100%;
+            width: 70%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto
+        }
+        
+        .container:after,
+        .container:before {
+            box-sizing: border-box;
+        }
+        
+        .main {
+            padding-right: 0;
+        }
+        
+        #douban {
+            height: 100%;
+            width: 100%;
+        }
+        
+        #douban ul {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        #douban li span {
+            width: 100%;
+            display: inline-block;
+            color: #1BAF69;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: center;
+        }
+        
+        .douban-title {
+            color: #1BAF69;
+            margin-bottom: -10px;
+            text-shadow: 0 0 1px;
+            letter-spacing: 3px;
+        }
+        
+        .douban-list {
+            margin-bottom: 5rem;
+        }
+        
+        .douban-list ul li {
+            list-style: none outside none;
+            width: 115px;
+            margin-top: 20px;
+            /* float: left; */
+            margin: 2rem;
+            width: 10rem;
+            max-height: 125px;
+        }
+        
+        .douban-list ul li img {
+            width: 90px;
+            height: 120px;
+            border: solid 1px #DDD;
+            padding: 1px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .clear {
+            clear: both;
+        }
+        
+        @media (max-width:875px) {
+            .douban-title {
+                letter-spacing: 1px;
+                margin-bottom: -15px;
+            }
+            .douban-list ul li {
+                width: 100px;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="archives">
+            <div id="douban"></div>
+        </div>
+        <script src="book.js"></script>
+        <script>
+            function ready(fn) {
+                if (document.addEventListener) { //标准浏览器  
+                    document.addEventListener('DOMContentLoaded', function() {
+                        //注销时间，避免反复触发  
+                        document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+                        fn(); //执行函数  
+                    }, false);
+                } else if (document.attachEvent) { //IE浏览器  
+                    document.attachEvent('onreadystatechange', function() {
+                        if (document.readyState == 'complete') {
+                            document.detachEvent('onreadystatechange', arguments.callee);
+                            fn(); //函数执行  
+                        }
+                    });
+                }
+            }
+            var dbapi = new DoubanApi();
+            window.onload = dbapi.show();
+        </script>
+</body>
+
+</html>
