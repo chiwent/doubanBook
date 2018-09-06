@@ -143,9 +143,9 @@ DoubanApi.prototype.parse_json = function(json) {
         link.title = item["db:subject"]["title"]["$t"];
         link.link = item["db:subject"]["link"][1]["@href"];
         link.src = item["db:subject"]["link"][2]["@href"];
-		if(link.src !== undefined) {
-			link.src = link.src.replace(/http\w{0,1}:\/\/p/g,'https://images.weserv.nl/?url=p');
-		}
+		//if(link.src !== undefined) {
+		//	link.src = link.src.replace(/http\w{0,1}:\/\/p/g,'https://images.weserv.nl/?url=p');
+		//}
         link.update = item["updated"]["$t"];
         items.push(link);
     });
